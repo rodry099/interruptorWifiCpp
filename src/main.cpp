@@ -72,6 +72,7 @@ void setup() {
     espalexa.addDevice(id_disp, controlOne, EspalexaDeviceType::onoff);
     #endif
     espalexa.begin();
+    ArduinoOTA.begin();
 
     #ifdef ESP12E
     pinMode(InterruptorOne,INPUT);
@@ -97,12 +98,14 @@ void setup() {
 
 void loop() {
 
+    ArduinoOTA.handle();
+
     client.loop();
     delay(1);
 
 
-  espalexa.loop();
-  delay(1);
+    espalexa.loop();
+    delay(1);
 
 #ifdef ONETTP223
 
