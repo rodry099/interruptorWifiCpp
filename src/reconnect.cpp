@@ -9,7 +9,9 @@ boolean reconnect() {
     if (client.connect(clientId.c_str(),willmsg.c_str(),1,0,"offline")) {
       Serial.println("connected");
       client.publish(willmsg.c_str(), "online");
-      client.subscribe("device/setup");
+      String setupDevice = "device/setup/";
+      setupDevice += id_disp;
+      client.subscribe(setupDevice.c_str());
 
       if(registrado > 0 ){
       String topicS = servidorNodeRed + "/" + categoria + "/" + id_disp + "/switch";

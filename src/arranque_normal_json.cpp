@@ -56,12 +56,6 @@ File setup = SPIFFS.open("/configuracion.txt", "r");
                 root.remove("ssid");
                 root.remove("password");
                 root.remove("servidor");
-
-                if(registrado == 0){
-                  root["canales"] = 1;
-                }else{
-                  root["canales"] = registrado + 1;
-                }
                 output = "";
                 root.printTo(output);
                 Serial.println("datos" + output);

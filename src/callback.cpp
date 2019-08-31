@@ -6,6 +6,8 @@
 void callback(char* topic, byte* payload, unsigned int length){
 
   int channel;
+  String setupDevice = "device/setup/";
+  setupDevice += id_disp;
   String estadoDevuelto = "";
   String solicitud = servidorNodeRed + "/" + categoria + "/" + id_disp + "/feedback";
   String respuestaEstado = servidorNodeRed + "/estadoDispositivos";
@@ -26,11 +28,11 @@ void callback(char* topic, byte* payload, unsigned int length){
         }
         canalDispositivo = obj["canal"];
         estadoDispositivo = obj["status"];
-
+        String servidor = obj["servidor"];
         String onOff(estadoDispositivo);
         String Stopic(topic);
 
-        Serial.println(canalDispositivo);
+        Serial.println(Stopic);
     /***************************************
       Enciende y apaga luz
     ***************************************/
@@ -47,8 +49,8 @@ void callback(char* topic, byte* payload, unsigned int length){
       y guarda 1 en la variable registrado
       del archivo configuracion
     ***************************************/
-    if(Stopic.equals("device/setup")){
-      registerDevice(estadoDispositivo);
+    if(Stopic.equals(setupDevice)){
+      registerDevice(servidor);
       registrado = 1;
       anunciaDisposito = 0;
       ESP.restart();

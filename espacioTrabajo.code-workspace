@@ -2,10 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"name": "prueba",
-			"path": "/home/rodry099/Documents/PlatformIO/Projects/prueba"
 		}
 	],
 	"settings": {
